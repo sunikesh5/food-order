@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'path'; // Import the path module
 import { fileURLToPath } from 'url'; // Required to get __dirname in ES modules
+import cors from 'cors';
 
 import bodyParser from 'body-parser';
 import express from 'express';
@@ -12,16 +13,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.json());
-// app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static('public'));
 
 // Set CORS headers
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 
 // GET /meals route
 app.get('/meals', async (req, res) => {
@@ -98,5 +99,5 @@ app.use((req, res) => {
 });
 
 // Export the app for use in serverless environments or local testing
-app.listen(3000)
+// app.listen(3000)
 export default app;
