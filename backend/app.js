@@ -99,5 +99,5 @@ app.use((req, res) => {
 });
 
 // Export the app for use in serverless environments or local testing
-// app.listen(3000)
+app.listen(3000)
 export default app;
