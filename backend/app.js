@@ -12,8 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.json());
-app.use('/images', express.static(path.join(__dirname, 'images')));
-// app.use(express.static('public'));
+// app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static('public'));
 
 // Set CORS headers
 app.use((req, res, next) => {
@@ -98,4 +98,5 @@ app.use((req, res) => {
 });
 
 // Export the app for use in serverless environments or local testing
+app.listen(3000)
 export default app;
